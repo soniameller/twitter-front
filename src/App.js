@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Input from './components/Input';
+import Code from './components/Code';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tweets: '',
+    };
+  }
+  loadTweets = (tweets) => {
+    this.setState({ tweets });
+  };
+
+  render() {
+    return (
+      <div>
+        <Container fixed>
+          <h1>Tweet analysis and generation </h1>
+          <h2>Data Collection</h2>
+          <p>
+            <Link href="https://www.tweepy.org/" target="_blank" rel="noopener">
+              This library{' '}
+            </Link>
+            has been used to get tweets by defining maximum amount of tweets, topic and language
+          </p>
+          <Code />
+          {/* TODO - Solve this space some other way! */}
+          <div style={{ height: '100px' }}></div>
+          <h4>Get tweets</h4>
+          <Input loadTweets={this.loadTweets} />
+          <div>{this.state.tweets}</div>
+        </Container>
+      </div>
+    );
+  }
 }
-
-export default App;
