@@ -31,7 +31,7 @@ export default class App extends Component {
           <Code />
           {/* TODO - Solve this space some other way! */}
           <div style={{ height: '100px' }}></div>
-          <h4>Get tweets</h4>
+          <h4>Scrape twitter</h4>
           <Input loadTweets={this.loadTweets} />
           <div>{this.state.tweets}</div>
         </Container>
