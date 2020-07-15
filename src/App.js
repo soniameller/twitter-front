@@ -4,6 +4,9 @@ import Code from './components/Code';
 
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+import WordCloud from './components/WordCloud';
+import BarChart from './components/BarChart';
+import { Box } from '@material-ui/core';
 
 export default class App extends Component {
   constructor(props) {
@@ -30,10 +33,18 @@ export default class App extends Component {
           </p>
           <Code />
           {/* TODO - Solve this space some other way! */}
-          <div style={{ height: '100px' }}></div>
-          <h4>Scrape twitter</h4>
-          <Input loadTweets={this.loadTweets} />
-          <div>{this.state.tweets}</div>
+          {/* <div style={{ height: '100px' }}></div> */}
+          <Box mt="5em">
+            <h4>Scrape twitter</h4>
+            <Input loadTweets={this.loadTweets} />
+            {this.state.tweets
+              ? this.state.tweets.map((tweet) => {
+                  return <li key={tweet.name}>{tweet.name}</li>;
+                })
+              : ''}
+            <WordCloud></WordCloud>
+            <BarChart></BarChart>
+          </Box>
         </Container>
       </div>
     );

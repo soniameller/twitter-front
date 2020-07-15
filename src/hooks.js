@@ -33,7 +33,6 @@ export function useForm(initialValues = {}) {
   const [formValues, setFormValues] = useState(initialValues);
 
   function handleChange(event) {
-    console.log('triggered!');
     let value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
     setFormValues({
       ...formValues,

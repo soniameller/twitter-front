@@ -20,10 +20,8 @@ export default function BasicTextFields(props) {
   const { formValues, setFormValues, getInputProps } = useForm();
 
   const handleSubmit = (event) => {
-    console.log('SUBMITTED!!');
     event.preventDefault();
 
-    console.log('FORM VALUES', formValues);
     getTweets(formValues).then((response) => {
       props.loadTweets(response);
     });
