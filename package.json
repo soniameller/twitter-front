@@ -1,6 +1,6 @@
 {
   "homepage": "http://soniameller.github.io/twitter-front",
-  "proxy": "http://localhost:8000",
+  "proxy": "http://localhost:5000",
   "name": "data-twitter-project",
   "version": "0.1.0",
   "private": true,

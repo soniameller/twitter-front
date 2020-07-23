@@ -1,49 +1,109 @@
-import React, { Component } from 'react';
-import Input from './components/Input';
-import Code from './components/Code';
+import React, { Component, Fragment } from 'react';
+import TweetInput from './components/TweetInput';
+import SentimentInput from './components/SentimentInput';
+import TweetGenInput from './components/TweetGenInput';
+// import Code from './components/Code';
 
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import WordCloud from './components/WordCloud';
 import BarChart from './components/BarChart';
-import { Box } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+
+import './App.css';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tweets: '',
+      tweets: null,
+      sentiment: null,
+      generated: null,
     };
   }
   loadTweets = (tweets) => {
     this.setState({ tweets });
   };
 
+  loadSentiment = (sentiment) => {
+    this.setState({ sentiment });
+  };
+
+  loadGenerated = (generated) => {
+    this.setState({ generated });
+  };
+
   render() {
     return (
       <div>
         <Container fixed>
-          <h1>Tweet analysis and generation </h1>
-          <h2>Data Collection</h2>
-          <p>
-            <Link href="https://www.tweepy.org/" target="_blank" rel="noopener">
-              This library{' '}
-            </Link>
-            has been used to get tweets by defining maximum amount of tweets, topic and language
-          </p>
-          <Code />
-          {/* TODO - Solve this space some other way! */}
-          {/* <div style={{ height: '100px' }}></div> */}
-          <Box mt="5em">
-            <h4>Scrape twitter</h4>
-            <Input loadTweets={this.loadTweets} />
-            {this.state.tweets
-              ? this.state.tweets.map((tweet) => {
-                  return <li key={tweet.name}>{tweet.name}</li>;
-                })
-              : ''}
-            <WordCloud></WordCloud>
-            <BarChart></BarChart>
+          <h1>Flask API </h1>
+          <h2>Tweet analysis and generation </h2>
+          <Box bgcolor="#f5eeee" p="5em" mt="1em">
+            <h3>Sentiment Analysis</h3>
+            <p>
+              {' '}
+              <Link
+                href="https://www.nltk.org/_modules/nltk/sentiment/vader.html"
+                target="_blank"
+                rel="noopener"
+              >
+                NLTK Vader model{' '}
+              </Link>{' '}
+              has been applyed to analyse your tweet input sentiment
+            </p>
+            <SentimentInput loadSentiment={this.loadSentiment} />
+
+            {this.state.sentiment ? (
+              <div>
+                {' '}
+                <BarChart wordSentiment={this.state.sentiment}></BarChart>
+              </div>
+            ) : (
+              ''
+            )}
+          </Box>
+          <Box bgcolor="#f5eeee" p="5em" mt="1em">
+            <h3>Scrape twitter</h3>
+            <h5>Data Collection</h5>
+            <p>
+              <Link href="https://www.tweepy.org/" target="_blank" rel="noopener">
+                Tweepy{' '}
+              </Link>
+              library has been used to get tweets by defining maximum amount of tweets, topic and
+              language
+            </p>
+            {/* <Code /> */}
+            <TweetInput loadTweets={this.loadTweets} />
+            {this.state.tweets ? (
+              <Fragment>
+                <h4 mt="3em">Top 5 tweets</h4>
+                {this.state.tweets.top_tweets.map((tweet, i) => {
+                  return <li key={i}>{tweet}</li>;
+                })}
+                <h4 mt="3em">Word frequency</h4>
+                <WordCloud wordFreq={this.state.tweets.word_freq}></WordCloud>
+              </Fragment>
+            ) : (
+              ''
+            )}
+          </Box>
+          <Box bgcolor="#f5eeee" p="5em" mt="1em">
+            <h3>Tweet generation</h3>
+            <p>
+              A model has been trained with the query <code>todes</code> in spanish
+            </p>
+            <TweetGenInput loadGenerated={this.loadGenerated} />
+          </Box>
+          <Box bgcolor="#f5eeee" p="5em" mt="1em">
+            <h3>Name entity recognition</h3>
+            <p>
+              Under construction{' '}
+              <span role="img" aria-label="Construction">
+                {' '}
+                👷🏽‍♀️ 🚧
+              </span>
+            </p>
           </Box>
         </Container>
       </div>

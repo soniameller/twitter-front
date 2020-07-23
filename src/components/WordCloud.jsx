@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactWordcloud from 'react-wordcloud';
 import { Resizable } from 're-resizable';
-import words from './../data/words';
+// -- Tested wordcloud with fake data 👇🏼--
+// import words from './../data/words';
 
 const resizeStyle = {
   display: 'flex',
@@ -55,7 +56,7 @@ export default class WordCloud extends Component {
           style={resizeStyle}
         >
           <div style={{ width: '100%', height: '100%' }}>
-            <ReactWordcloud options={options} words={words} />
+            <ReactWordcloud options={options} words={this.props.wordFreq} />
           </div>
         </Resizable>
       </div>

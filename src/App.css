@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.tweet-container {
+  margin-top: 2em;
+  background-color: #f0f2ff;
+  padding: 1em 2em;
+}
