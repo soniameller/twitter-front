@@ -27,13 +27,35 @@ export default function SimpleAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>See code snippet</Typography>
+          <Typography className={classes.heading}>Model summary </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <code>
-            auth = tweepy.AppAuthHandler(consumer_key, consumer_secret) api = tweepy.API(auth,
-            wait_on_rate_limit=True,wait_on_rate_limit_notify=True)
-          </code>
+          <div>
+            <p>
+              Follow this{' '}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/soniameller/twitter-scrape-project"
+              >
+                link
+              </a>{' '}
+              to access the repository
+            </p>
+            <img
+              style={{ maxWidth: '600px' }}
+              src="https://i.imgur.com/MSPe7YQ.png"
+              alt=""
+              srcSet=""
+            />
+
+            <img
+              style={{ maxWidth: '600px' }}
+              src="https://i.imgur.com/CphPrlA.png"
+              alt=""
+              srcSet=""
+            />
+          </div>
         </AccordionDetails>
       </Accordion>
     </div>

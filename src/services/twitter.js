@@ -20,6 +20,21 @@ const getTweets = (formValues) =>
       .catch(reject);
   });
 
+const generateTweet = (formValues) =>
+  new Promise((resolve, reject) => {
+    const start = formValues.start;
+    const length = formValues.length;
+
+    instance
+      .get(`/predict/?start=${start}&length=${length}`)
+      .then((result) => {
+        console.log('API result', result);
+        const tweet = result.data;
+        resolve(tweet);
+      })
+      .catch(reject);
+  });
+
 const getSentiment = (formValues) =>
   new Promise((resolve, reject) => {
     const sentiment = formValues.sentiment;
@@ -34,4 +49,4 @@ const getSentiment = (formValues) =>
       .catch(reject);
   });
 
-export { getTweets, getSentiment };
+export { getTweets, getSentiment, generateTweet };

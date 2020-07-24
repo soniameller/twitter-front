@@ -37,8 +37,10 @@
   }
 }
 
-.tweet-container {
-  margin-top: 2em;
-  background-color: #f0f2ff;
-  padding: 1em 2em;
+.disabeled {
+  color: gray;
+}
+
+.tweet__icons img {
+  height: 15px;
 }
