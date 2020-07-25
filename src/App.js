@@ -130,6 +130,24 @@ export default class App extends Component {
               </span>
             </p>
           </Box>
+          <p>
+            Flask API{' '}
+            <Link
+              href="https://github.com/soniameller/flask-twitter-api"
+              target="_blank"
+              rel="noopener"
+            >
+              repository{' '}
+            </Link>
+            | React frontend{' '}
+            <Link
+              href="https://github.com/soniameller/twitter-front"
+              target="_blank"
+              rel="noopener"
+            >
+              repository
+            </Link>
+          </p>
         </Container>
       </div>
     );
